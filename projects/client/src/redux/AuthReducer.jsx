@@ -94,5 +94,30 @@ export const registEmployee = (values, setLoading) => {
   };
 };
 
+export const formEmployee = (values, setLoading) => {
+  return async (dispatch) => {
+    try {
+      setLoading(true);
+      const respon = await axios.post(
+        `${URL_API}/auth-management/`,
+        {
+          password: values.password,
+          fullName: values.fullName,
+          username: values.username,
+          birthday: values.birthday,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      alert("Success");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const { userLogin, setUser, setRole, userLogout } = AuthReducer.actions;
 export default AuthReducer.reducer;

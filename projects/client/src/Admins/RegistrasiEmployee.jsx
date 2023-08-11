@@ -67,7 +67,7 @@ export default function RegistrasiEmployee() {
   return (
     <>
       <Button onClick={onOpen} mt={"10px"} mr={"10px"}>
-        Create Employee
+        Add Employee
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -126,7 +126,7 @@ export default function RegistrasiEmployee() {
                     <CiMoneyCheck1 />
                   </InputLeftElement>
                   <Input
-                    placeholder="Type here"
+                    placeholder="Amount"
                     id="baseSalary"
                     name="baseSalary"
                     value={formik.values.baseSalary}

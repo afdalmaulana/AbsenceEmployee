@@ -1,5 +1,5 @@
 import { Box, Button, Stack, Text } from "@chakra-ui/react";
-import Navbar from "../Admins/Navbar";
+import Navbar from "../Components/Navbar";
 import { useEffect, useState } from "react";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { BiLogIn } from "react-icons/bi";

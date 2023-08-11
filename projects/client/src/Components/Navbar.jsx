@@ -1,10 +1,12 @@
 import { Box, Button, Flex, Spacer, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../redux/AuthReducer";
-import RegistrasiEmployee from "./RegistrasiEmployee";
+import RegistrasiEmployee from "../Admins/RegistrasiEmployee";
+import HistoryWork from "../Employee/HistroryWork";
 
 export default function Navbar() {
+  const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
   return (
     <>
@@ -12,7 +14,7 @@ export default function Navbar() {
         <Flex>
           <Text fontSize={"40px"}>Focus</Text>
           <Spacer />
-          <RegistrasiEmployee />
+          {user.roleId === 1 ? <RegistrasiEmployee /> : <HistoryWork />}
           <Button
             mt={"10px"}
             onClick={() => dispatch(userLogout())}
