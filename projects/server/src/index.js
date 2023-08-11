@@ -2,14 +2,15 @@ require("dotenv/config");
 const express = require("express");
 const cors = require("cors");
 const { join } = require("path");
+const db = require("../models");
+const { authRouter } = require("./Routes");
 
 const PORT = process.env.PORT || 8000;
 const app = express();
 app.use(
   cors({
     origin: [
-      process.env.WHITELISTED_DOMAIN &&
-        process.env.WHITELISTED_DOMAIN.split(","),
+      "http://localhost:3000", "http://192.168.20.197:3000"
     ],
   })
 );
@@ -20,6 +21,11 @@ app.use(express.json());
 
 // ===========================
 // NOTE : Add your routes here
+
+// db.sequelize.sync({
+//   alter: true
+// });
+app.use("/api/auth-management", authRouter)
 
 app.get("/api", (req, res) => {
   res.send(`Hello, this is my API`);

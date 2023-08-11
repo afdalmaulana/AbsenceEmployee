@@ -1,5 +1,27 @@
 # Purwadhika Final Project Repository
 
+Dependencies need to install
+client side:
+npm i axios
+npm i formik yup
+npm install react-router-dom@6
+npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion (opsional component style)
+npm install @reduxjs/toolkit
+npm i react-redux
+npm install react-icons --save
+
+server side :
+npm jsonwebtoken
+npm install bcrypt
+npm install sequelize
+npm install express
+npm install express-validator
+npm install sequelize-cli
+npm install dotenv
+npm i nodemailer
+npm i multer
+npm i handlebars
+
 This is monorepo contain frontend project using ReactJS and backend project using ExpressJS.
 
 ## Available Scripts
