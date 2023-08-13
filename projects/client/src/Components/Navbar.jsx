@@ -1,27 +1,39 @@
 import { Box, Button, Flex, Spacer, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogout } from "../redux/AuthReducer";
+import { userLogout } from "../redux/reducer/AuthReducer";
 import RegistrasiEmployee from "../Admins/RegistrasiEmployee";
 import HistoryWork from "../Employee/HistroryWork";
+import ButtonReport from "./ButtonReport";
+import { Link } from "react-router-dom";
+import ButtonLogout from "./ButtonLogout";
+import ButtonRegistrasiEmployee from "../Admins/ButtonRegistrasiEmployee";
 
 export default function Navbar() {
   const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
   return (
     <>
-      <Box w={"100%"} h={"60px"} bgColor={"brown"} fontFamily={"montserrat"}>
+      <Box
+        w={"100%"}
+        h={"60px"}
+        bgColor={"#F5F5F5"}
+        color={"black"}
+        fontFamily={"montserrat"}
+        pos={"sticky"}
+        top={0}
+        zIndex={1000}
+      >
         <Flex>
-          <Text fontSize={"40px"}>Focus</Text>
+          <Link to={"/"}>
+            <Text fontSize={"40px"}>Focus</Text>
+          </Link>
           <Spacer />
-          {user.roleId === 1 ? <RegistrasiEmployee /> : <HistoryWork />}
-          <Button
-            mt={"10px"}
-            onClick={() => dispatch(userLogout())}
-            mr={"10px"}
-          >
-            Logout
-          </Button>
+          <Box mt={"10px"} mr={10}>
+            <Text fontSize={"24px"}>Role : {user.Role?.role}</Text>
+          </Box>
+          {user.roleId === 1 ? <ButtonRegistrasiEmployee /> : ""}
+          <Box>{user.roleId === 1 ? <ButtonLogout /> : ""}</Box>
         </Flex>
       </Box>
     </>

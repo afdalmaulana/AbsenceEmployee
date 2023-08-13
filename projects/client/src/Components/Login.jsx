@@ -20,7 +20,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginAuth } from "../redux/AuthReducer";
+import { loginAuth } from "../redux/reducer/AuthReducer";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -59,14 +59,14 @@ export default function Login() {
     <>
       <Box fontFamily={"montserrat"}>
         <Flex>
-          <Box w={"100vh"}>
+          <Box w={{ md: "80vh", lg: "100vh" }}>
             <Image src="compa.jpg"></Image>
           </Box>
           <Box
             boxShadow={"lg"}
             m={"200px auto"}
             borderRadius={"20px"}
-            w={"400px"}
+            w={{ md: "300px", lg: "400px" }}
             h={"400px"}
             textAlign={"center"}
             bgColor={"blackAlpha.900"}
@@ -77,7 +77,7 @@ export default function Login() {
             </Text>
             <Text>Welcome Back</Text>
             <form onSubmit={formik.handleSubmit}>
-              <Box w={"300px"} m={"auto"}>
+              <Box w={{ sm: "100px", md: "200px", lg: "300px" }} m={"auto"}>
                 <FormControl
                   isInvalid={formik.touched.email && formik.errors.email}
                 >
@@ -153,7 +153,7 @@ export default function Login() {
                   colorScheme="teal"
                   _hover={{ bgColor: "green" }}
                   mt={"30px"}
-                  w={"300px"}
+                  w={{ sm: "100px", md: "200px", lg: "300px" }}
                 >
                   {isLoading ? <Spinner /> : "LOGIN"}
                 </Button>

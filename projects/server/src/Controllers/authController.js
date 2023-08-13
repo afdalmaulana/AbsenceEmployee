@@ -28,7 +28,7 @@ const authController = {
         try {
             const {email, password} = req.body
             const checkLogin = await user.findOne({
-                where : {email}
+                where : {email}, include : { model: db.Role, attributes : ["role"]}
             })
             if(!checkLogin) return res.status(404).json({message : "Account Not Defined"})
             const checkPassword = await bcrypt.compare(password, checkLogin.password)
@@ -44,7 +44,16 @@ const authController = {
             const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn : "3h"})
             checkLogin.isLogin = true;
             await checkLogin.save()
-            return res.status(200).json({message : "Login Success", Account : payload, token : token})
+            return res.status(200).json({message : "Login Success", Account : checkLogin, token : token})
+        } catch (error) {
+            return res.status(500).json({message : error.message})
+        }
+    },
+    keepLogin : async(req, res) => {
+        try {
+            const {id} = req.user
+            const findUser = await user.findOne({ where : {id}, include : {model : db.Role, attributes : ["role"]}})
+            return res.status(200).json({message : "Keep Login", findUser})
         } catch (error) {
             return res.status(500).json({message : error.message})
         }

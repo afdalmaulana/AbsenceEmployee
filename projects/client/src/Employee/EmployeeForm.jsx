@@ -12,12 +12,14 @@ import {
   Spacer,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { BiSolidLockAlt } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { formEmployee } from "../redux/reducer/AuthReducer";
 
 const formEmployeSchema = Yup.object().shape({
   password: Yup.string()
@@ -33,6 +35,9 @@ const formEmployeSchema = Yup.object().shape({
 
 export default function EmployeeForm() {
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(false);
+  const toast = useToast();
   const showPassword = () => {
     setShow(!show);
   };
@@ -46,6 +51,7 @@ export default function EmployeeForm() {
     validationSchema: formEmployeSchema,
     onSubmit: (values) => {
       console.log("submit", values);
+      dispatch(formEmployee(values, setLoading, toast));
     },
   });
   return (

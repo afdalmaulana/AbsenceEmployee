@@ -9,6 +9,7 @@ const initialState = {
     email: "",
     username: "",
     roleId: "",
+    role: "",
   },
   login: false,
   role: [],
@@ -20,8 +21,9 @@ const AuthReducer = createSlice({
   reducers: {
     setUser: (state, action) => {
       console.log("action", action.payload);
-      const { id, fullName, email, username, roleId } = action.payload;
-      state.user = { id, fullName, email, username, roleId };
+      const { id, fullName, email, username, roleId, Role } = action.payload;
+      state.user = { id, fullName, email, username, roleId, Role };
+      // state.user.roleName = action.payload?.Role?.role;
     },
     userLogin: (state, action) => {
       state.login = true;
@@ -29,6 +31,9 @@ const AuthReducer = createSlice({
     userLogout: (state, action) => {
       state.login = false;
       localStorage.removeItem("token");
+      setTimeout(() => {
+        document.location.href = "/";
+      }, 1000);
     },
     setRole: (state, action) => {
       state.role = [...action.payload];
@@ -37,6 +42,25 @@ const AuthReducer = createSlice({
   },
 });
 
+export const userKeepLogin = () => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("token");
+    try {
+      const respon = await axios.get(
+        `${URL_API}/auth-management/auth/keepLogin`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(setUser(respon.data.findUser));
+      dispatch(userLogin());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 export const loginAuth = (values, setLoading) => {
   return async (dispatch) => {
     try {
@@ -68,8 +92,9 @@ export const getRole = () => {
   };
 };
 
-export const registEmployee = (values, setLoading) => {
+export const registEmployee = (values, setLoading, toast) => {
   return async (dispatch) => {
+    console.log("regist", values);
     try {
       setLoading(true);
       const respon = await axios.post(
@@ -85,20 +110,40 @@ export const registEmployee = (values, setLoading) => {
           },
         }
       );
-      alert("Success");
+      toast({
+        title: "Success",
+        description: "Please check your email to continue",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+      setTimeout(() => {
+        document.location.href = "/";
+      }, 2000);
     } catch (error) {
       console.log(error);
+      toast({
+        title: "Failed",
+        description: error?.response?.data?.message,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
     } finally {
       setLoading(false);
     }
   };
 };
 
-export const formEmployee = (values, setLoading) => {
+export const formEmployee = (values, setLoading, toast) => {
   return async (dispatch) => {
     try {
       setLoading(true);
-      const respon = await axios.post(
+      const url = window.location.href.split("/");
+      const token = url.pop();
+      console.log("url employe", url);
+      console.log("token empo", token);
+      const respon = await axios.patch(
         `${URL_API}/auth-management/`,
         {
           password: values.password,
@@ -108,13 +153,29 @@ export const formEmployee = (values, setLoading) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       alert("Success");
+      toast({
+        title: "Success",
+        description: "Your data has been save",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
     } catch (error) {
       console.log(error);
+      toast({
+        title: "Failed",
+        description: error?.response?.data?.message,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    } finally {
+      setLoading(false);
     }
   };
 };

@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const { join } = require("path");
 const db = require("../models");
-const { authRouter } = require("./Routes");
+const { authRouter, HistroryRouter } = require("./Routes");
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -26,6 +26,7 @@ app.use(express.json());
 //   alter: true
 // });
 app.use("/api/auth-management", authRouter)
+app.use("/api/attendence", HistroryRouter)
 
 app.get("/api", (req, res) => {
   res.send(`Hello, this is my API`);

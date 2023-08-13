@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Role, {foreignKey : "roleId"})
+      this.hasMany(models.History, {foreignKey : "userId"})
     }
   }
   User.init({
@@ -27,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     birthday: DataTypes.DATE,
     roleId : DataTypes.INTEGER,
+    daySalary : DataTypes.INTEGER,
     baseSalary : DataTypes.INTEGER,
     isLogin : {
       type : DataTypes.BOOLEAN,
