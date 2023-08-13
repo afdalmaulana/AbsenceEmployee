@@ -19,11 +19,13 @@ const AdminController = {
             })
             if(checkEmail) return res.status(500).json({message : "Email Already Exist"})
             await db.sequelize.transaction(async (t) => {
-                const result = await user.create({email, roleId, baseSalary}, {transaction : t})
+                const result = await user.create({email, roleId, baseSalary, daySalary}, {transaction : t})
                 let payload = {
                     id : result.id,
                     email : result.email,
                     roleId : result.roleId,
+                    baseSalary : result.baseSalary,
+                    daySalary : result.daySalary
                 }
                 const token = jwt.sign(payload, process.env.JWT_KEY, {expiresIn : "1h"})
                 const redirect = `http://localhost:3000/auth/${token}`

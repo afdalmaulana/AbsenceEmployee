@@ -26,7 +26,8 @@ const HistoryController = {
                     clockOut : null,
                     hourlyWork : 0,
                     daySalary : 0,
-                    month : month
+                    month : month,
+                    // clockIn : new Date
                 })
                 return res.status(200).json({message : "Clock in success", respon, id})
             })

@@ -9,7 +9,12 @@ module.exports = {
   //     updatedAt: new Date()
   //   },
   //   {
-  //     role: "karyawan", 
+  //     role: "Karyawan Pagi", 
+  //     createdAt: new Date(), 
+  //     updatedAt: new Date()
+  //   },
+  //   {
+  //     role: "Karyawan Malam", 
   //     createdAt: new Date(), 
   //     updatedAt: new Date()
   //   }

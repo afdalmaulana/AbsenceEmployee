@@ -26,6 +26,7 @@ import RegistrasiEmployee from "../Admins/RegistrasiEmployee";
 import HistoryWork from "./HistroryWork";
 import { Link } from "react-router-dom";
 import ButtonLogout from "../../Components/ButtonLogout";
+import ButtonReports from "./ButtonReports";
 const URL_API = process.env.REACT_APP_API_BASE_URL;
 
 export default function DashBoardEmployee() {
@@ -33,6 +34,7 @@ export default function DashBoardEmployee() {
   const { user } = useSelector((state) => state.AuthReducer);
   // const { history } = useSelector((state) => state.HistoryReducer);
   // console.log(user.Role);
+  const [timeClockIn, setTimeClockIn] = useState([]);
   const [currentTime, setTime] = useState(new Date());
   const [currentDate, setCurrentDate] = useState(new Date());
   const dispatch = useDispatch();
@@ -58,14 +60,6 @@ export default function DashBoardEmployee() {
     };
   }, []);
 
-  const handleClockin = async () => {
-    dispatch(clockIn(toast));
-  };
-
-  const handleClockOut = async () => {
-    dispatch(clockOut(toast));
-  };
-
   const fetchHistory = async () => {
     const token = localStorage.getItem("token");
     try {
@@ -79,6 +73,14 @@ export default function DashBoardEmployee() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleClockOut = async () => {
+    dispatch(clockOut(toast));
+    setTimeClockIn(new Date());
+  };
+  const handleClockin = async () => {
+    dispatch(clockIn(toast));
   };
   useEffect(() => {
     fetchHistory();
@@ -97,19 +99,26 @@ export default function DashBoardEmployee() {
               zIndex={1000}
               bgColor={"#7C9D96"}
               color={"#321E1E"}
-              w={{ lg: "240px" }}
+              w={{ md: "180px", lg: "240px" }}
               pl={"20px"}
             >
               <Link to={"/"}>
-                <Text fontSize={"36px"}>Focus Attendence</Text>
+                <Text fontSize={{ md: "24px", lg: "36px" }}>
+                  Focus Attendence
+                </Text>
               </Link>
               <Divider size={"lg"} />
               {/* <Spacer /> */}
               <ButtonLogout />
               {user.roleId === 1 ? <ButtonReport /> : ""}
               {user.roleId === 1 ? <RegistrasiEmployee /> : <HistoryWork />}
+              {user.roleId === 1 ? "" : <ButtonReports />}
             </Box>
-            <Box boxShadow={"lg"} fontSize={"24px"} ml={"240px"}>
+            <Box
+              boxShadow={"lg"}
+              fontSize={"24px"}
+              ml={{ sm: "180px", md: "180px", lg: "240px" }}
+            >
               <Box>
                 <Center>
                   <Stack>
@@ -125,8 +134,9 @@ export default function DashBoardEmployee() {
                   <Button
                     leftIcon={<BiLogIn />}
                     colorScheme="green"
-                    w={"500px"}
+                    w={{ md: "330px", lg: "500px" }}
                     onClick={() => handleClockin()}
+                    // isDisabled={user.roleId === 2}
                   >
                     Clock in
                   </Button>
@@ -134,11 +144,14 @@ export default function DashBoardEmployee() {
                     colorScheme="red"
                     rightIcon={<RiLogoutBoxRLine />}
                     ml={"20px"}
-                    w={"500px"}
+                    w={{ md: "330px", lg: "500px" }}
                     onClick={() => handleClockOut()}
                   >
                     Clock out
                   </Button>
+                  <Box>
+                    {/* <Text>Last time Clock in : {timeClockIn}</Text> */}
+                  </Box>
                 </Box>
               </Box>
               <Box mt={"16px"} pl={"50px"}>
@@ -158,8 +171,8 @@ export default function DashBoardEmployee() {
                     {attendence.map((item) => {
                       return (
                         <Tr key={item.id}>
-                          <Td>{item.clockIn}</Td>
-                          <Td>{item.clockOut}</Td>
+                          <Td>{new Date(item.clockIn).toLocaleString()}</Td>
+                          <Td>{new Date(item.clockOut).toLocaleString()}</Td>
                           <Td>{item.hourlyWork}</Td>
                           <Td>{item.daySalary}</Td>
                           <Td>{item.month}</Td>

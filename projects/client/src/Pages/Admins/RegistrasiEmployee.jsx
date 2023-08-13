@@ -36,6 +36,7 @@ export default function RegistrasiEmployee({ isOpen, onClose }) {
       .email("Invalid email address format"),
     roleId: Yup.string().required("Role is required"),
     baseSalary: Yup.string().required("is Required"),
+    daySalary: Yup.string().required("is Required"),
   });
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();

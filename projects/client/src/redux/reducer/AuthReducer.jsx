@@ -103,6 +103,7 @@ export const registEmployee = (values, setLoading, toast) => {
           email: values.email,
           roleId: values.roleId,
           baseSalary: values.baseSalary,
+          daySalary: values.daySalary,
         },
         {
           headers: {

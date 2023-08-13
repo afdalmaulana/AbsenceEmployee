@@ -51,7 +51,7 @@ export const clockIn = (toast) => {
         title: "Clockin Failed",
         description: error?.response?.data?.message,
         status: "error",
-        duration: 3000,
+        duration: 1000,
         isClosable: true,
       });
     }
@@ -81,7 +81,7 @@ export const clockOut = (toast) => {
         title: "Clock out Failed",
         description: error?.response?.data?.message,
         status: "error",
-        duration: 3000,
+        duration: 1000,
         isClosable: true,
       });
     }
