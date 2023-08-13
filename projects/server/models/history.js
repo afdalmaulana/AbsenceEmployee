@@ -12,10 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.User, {foreignKey : "userId"})
+      this.belongsTo(models.Salary, {foreignKey : "salaryId"})
     }
   }
   History.init({
     userId: DataTypes.INTEGER,
+    salaryId : DataTypes.INTEGER,
     clockIn: DataTypes.DATE,
     clockOut: {
       type : DataTypes.DATE,
@@ -23,6 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     hourlyWork : DataTypes.FLOAT,
     daySalary: DataTypes.INTEGER,
+    month : DataTypes.INTEGER,
+    cuts : DataTypes.INTEGER,
     isOvertime: {
       type: DataTypes.BOOLEAN,
       defaultValue: true

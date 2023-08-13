@@ -2,10 +2,10 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import "./App.css"
 import Home from "./Pages/Home";
-import EmployeeForm from "./Employee/EmployeeForm";
+import EmployeeForm from "./Pages/Employee/EmployeeForm";
 import UserAuth from "./Components/UserAuth";
 import HistroryPage from "./Pages/HistoryPage";
-import Reports from "./Pages/Reports";
+import Reports from "./Pages/Employee/Reports";
 
 function App() {
   return (

@@ -14,18 +14,18 @@ import {
   Tr,
   useToast,
 } from "@chakra-ui/react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../../Components/Navbar";
 import { useEffect, useState } from "react";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { BiLogIn } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { clockIn, clockOut } from "../redux/reducer/HistoryReducer";
-import ButtonReport from "../Components/ButtonReport";
+import { clockIn, clockOut } from "../../redux/reducer/HistoryReducer";
+import ButtonReport from "../../Components/ButtonReport";
 import RegistrasiEmployee from "../Admins/RegistrasiEmployee";
-import HistoryWork from "../Employee/HistroryWork";
+import HistoryWork from "./HistroryWork";
 import { Link } from "react-router-dom";
-import ButtonLogout from "../Components/ButtonLogout";
+import ButtonLogout from "../../Components/ButtonLogout";
 const URL_API = process.env.REACT_APP_API_BASE_URL;
 
 export default function DashBoardEmployee() {
@@ -150,6 +150,8 @@ export default function DashBoardEmployee() {
                       <Th>Clock Out</Th>
                       <Th>Working Hours</Th>
                       <Th>Day Salary</Th>
+                      <Th>Month</Th>
+                      <Th>Deduction</Th>
                     </Tr>
                   </Thead>
                   <Tbody fontSize={"12px"}>
@@ -160,6 +162,8 @@ export default function DashBoardEmployee() {
                           <Td>{item.clockOut}</Td>
                           <Td>{item.hourlyWork}</Td>
                           <Td>{item.daySalary}</Td>
+                          <Td>{item.month}</Td>
+                          <Td>{item.cuts}</Td>
                         </Tr>
                       );
                     })}

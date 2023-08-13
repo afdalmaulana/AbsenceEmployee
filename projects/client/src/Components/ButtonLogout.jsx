@@ -8,7 +8,7 @@ export default function ButtonLogout() {
   return (
     <>
       <Button
-        mt={"60px"}
+        mt={"20px"}
         variant={"unstyled"}
         h={"20px"}
         onClick={() => dispatch(userLogout())}

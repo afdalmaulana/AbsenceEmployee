@@ -17,15 +17,18 @@ const HistoryController = {
         try {
             const userClockin = await isClockIn({id})
             if(userClockin) return res.status(500).json({message : "User already Clock in"})
+            const today = new Date()
+            const month = today.getMonth() + 1;
             db.sequelize.transaction(async(t) => {
                 const respon = await hs.create({
                     userId : id,
                     isOvertime : false,
                     clockOut : null,
                     hourlyWork : 0,
-                    daySalary : 0
+                    daySalary : 0,
+                    month : month
                 })
-                return res.status(200).json({message : "Login", respon})
+                return res.status(200).json({message : "Clock in success", respon, id})
             })
         } catch (error) {
             return res.status(500).json({message : error.message})
@@ -52,14 +55,20 @@ const HistoryController = {
                 respon.hourlyWork = workTimeHours
                 if (workTimeHours > 12) {
                     respon.daySalary = users.daySalary / 2;
+                    respon.cuts = users.daySalary / 2
                 } else if(!respon.clockIn){
                     respon.daySalary = 0
+                    respon.cuts = users.daySalary / 2
                 } else if(workTimeHours <= 11){
                     respon.daySalary = users.daySalary / 2
+                    respon.cuts = users.daySalary / 2
                 }
+                // await respon.save()
+                console.log("Hours work", workTimeHours)
+                console.log("Day Salary", respon.daySalary)
                 respon.isDone = true
                 await respon.save(), {transaction : t}
-                return res.status(200).json({message : "Thankyou", respon})
+                return res.status(200).json({message : "Thankyou, Clock out success", respon})
             })
         } catch (error) {
             return res.status(500).json({message : error.message})

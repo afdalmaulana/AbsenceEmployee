@@ -24,7 +24,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { getRole, registEmployee } from "../redux/reducer/AuthReducer";
+import { getRole, registEmployee } from "../../redux/reducer/AuthReducer";
 import { useEffect, useState } from "react";
 import { BsPersonCircle } from "react-icons/bs";
 import { CiMoneyCheck1 } from "react-icons/ci";
@@ -134,11 +134,34 @@ export default function RegistrasiEmployee({ isOpen, onClose }) {
                   )}
                 </InputGroup>
               </FormControl>
-              <FormControl></FormControl>
+              <FormControl
+                isInvalid={formik.touched.daySalary && formik.errors.daySalary}
+              >
+                <Text ml={"30px"} mt={"16px"}>
+                  Day Salary
+                </Text>
+                <InputGroup mt={"12px"} ml={"30px"} w={"350px"}>
+                  <InputLeftElement>
+                    <CiMoneyCheck1 />
+                  </InputLeftElement>
+                  <Input
+                    placeholder="Day Amount"
+                    id="daySalary"
+                    name="daySalary"
+                    value={formik.values.daySalary}
+                    onChange={formik.handleChange}
+                  ></Input>
+                  {formik.touched.daySalary && formik.errors.daySalary && (
+                    <FormErrorMessage>
+                      {formik.errors.daySalary}
+                    </FormErrorMessage>
+                  )}
+                </InputGroup>
+              </FormControl>
             </ModalBody>
             <ModalFooter>
               <Button colorScheme="teal" type="submit">
-                {isLoading ? <Spinner>Please Wait</Spinner> : "Submit"}
+                {isLoading ? <Spinner /> : "Submit"}
               </Button>
             </ModalFooter>
           </form>

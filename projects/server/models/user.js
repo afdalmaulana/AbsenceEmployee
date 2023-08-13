@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     roleId : DataTypes.INTEGER,
     daySalary : DataTypes.INTEGER,
     baseSalary : DataTypes.INTEGER,
+    income : DataTypes.INTEGER,
     isLogin : {
       type : DataTypes.BOOLEAN,
       defaultValue : false

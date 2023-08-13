@@ -1,8 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import Login from "../Components/Login";
 import { useSelector } from "react-redux";
-import DashBoardAdmins from "./DashBoardAdmins";
-import DashBoardEmployee from "./DashBoardEmployee";
+import DashBoardAdmins from "./Admins/DashBoardAdmins";
+import DashBoardEmployee from "./Employee/DashBoardEmployee";
 
 export default function Home() {
   const { login } = useSelector((state) => state.AuthReducer);

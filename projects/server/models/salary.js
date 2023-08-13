@@ -11,10 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.History, {foreignKey : "salaryId"})
+      this.belongsTo(models.User, {foreignKey: "userId"})
+
     }
   }
   Salary.init({
-    gaji: DataTypes.INTEGER
+    userId : DataTypes.INTEGER,
+    totalSalary : DataTypes.INTEGER,
+    salaryCuts : DataTypes.INTEGER,
+    month : DataTypes.INTEGER,
+    year : DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Salary',

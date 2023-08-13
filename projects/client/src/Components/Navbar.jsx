@@ -2,12 +2,12 @@ import { Box, Button, Flex, Spacer, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../redux/reducer/AuthReducer";
-import RegistrasiEmployee from "../Admins/RegistrasiEmployee";
-import HistoryWork from "../Employee/HistroryWork";
+import RegistrasiEmployee from "../Pages/Admins/RegistrasiEmployee";
+import HistoryWork from "../Pages/Employee/HistroryWork";
 import ButtonReport from "./ButtonReport";
 import { Link } from "react-router-dom";
 import ButtonLogout from "./ButtonLogout";
-import ButtonRegistrasiEmployee from "../Admins/ButtonRegistrasiEmployee";
+import ButtonRegistrasiEmployee from "../Pages/Admins/ButtonRegistrasiEmployee";
 
 export default function Navbar() {
   const { user } = useSelector((state) => state.AuthReducer);

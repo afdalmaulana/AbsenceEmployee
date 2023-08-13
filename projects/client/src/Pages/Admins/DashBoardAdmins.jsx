@@ -1,10 +1,10 @@
 import { Box, Center, Flex, Stack, Text } from "@chakra-ui/react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../../Components/Navbar";
 import { Link } from "react-router-dom";
-import ButtonLogout from "../Components/ButtonLogout";
+import ButtonLogout from "../../Components/ButtonLogout";
 import { useSelector } from "react-redux";
-import ButtonReport from "../Components/ButtonReport";
-import RegistrasiEmployee from "../Admins/RegistrasiEmployee";
+import ButtonReport from "../../Components/ButtonReport";
+import RegistrasiEmployee from "./RegistrasiEmployee";
 import HistoryWork from "../Employee/HistroryWork";
 import { useState } from "react";
 

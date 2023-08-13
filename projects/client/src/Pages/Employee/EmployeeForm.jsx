@@ -19,7 +19,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { formEmployee } from "../redux/reducer/AuthReducer";
+import { formEmployee } from "../../redux/reducer/AuthReducer";
 
 const formEmployeSchema = Yup.object().shape({
   password: Yup.string()
