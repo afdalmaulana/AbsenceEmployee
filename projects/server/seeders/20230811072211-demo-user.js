@@ -5,11 +5,11 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     //  await queryInterface.bulkInsert('Users', [{
     //   fullName: 'Afdal',
-    //   email : "afdalmaulanaaa@gmail.com",
-    //   username : "Afdalmaulana26",
+    //   email : "afdalmaulanaaa26@gmail.com",
+    //   username : "Afdal",
     //   password : "$2a$10$nYAuCtBRY0rF7rfcU58ME.yeRBy.NWzJP7eVyC08vo/VFLwzP0PnS",
     //   birthday : new Date(1998, 7, 26),
-    //   roleId : 2,
+    //   roleId : 1,
     //   daySalary : 150000,
     //   baseSalary : 3000000,
     //   isLogin : false,

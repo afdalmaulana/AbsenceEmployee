@@ -8,14 +8,16 @@ export default function ButtonLogout() {
   return (
     <>
       <Button
-        mt={"20px"}
-        variant={"unstyled"}
-        h={"20px"}
+        mt={"10px"}
+        // variant={"unstyled"}
+        // h={"20px"}
+        bgColor={"#7C9D96"}
         onClick={() => dispatch(userLogout())}
-        mr={"8px"}
+        mr={"20px"}
         _hover={{ color: "red" }}
+        // fontSize={"24px"}
       >
-        Logout
+        Sign out
       </Button>
     </>
   );

@@ -158,7 +158,6 @@ export const formEmployee = (values, setLoading, toast) => {
           },
         }
       );
-      alert("Success");
       toast({
         title: "Success",
         description: "Your data has been save",
@@ -166,6 +165,9 @@ export const formEmployee = (values, setLoading, toast) => {
         duration: 9000,
         isClosable: true,
       });
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000);
     } catch (error) {
       console.log(error);
       toast({

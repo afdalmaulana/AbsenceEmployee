@@ -33,7 +33,8 @@ export default function Navbar() {
             <Text fontSize={"24px"}>Role : {user.Role?.role}</Text>
           </Box>
           {user.roleId === 1 ? <ButtonRegistrasiEmployee /> : ""}
-          <Box>{user.roleId === 1 ? <ButtonLogout /> : ""}</Box>
+          <ButtonLogout />
+          {/* <Box>{user.roleId === 1 ? <ButtonLogout /> : ""}</Box> */}
         </Flex>
       </Box>
     </>

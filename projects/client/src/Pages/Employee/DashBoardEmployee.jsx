@@ -109,7 +109,6 @@ export default function DashBoardEmployee() {
               </Link>
               <Divider size={"lg"} />
               {/* <Spacer /> */}
-              <ButtonLogout />
               {user.roleId === 1 ? <ButtonReport /> : ""}
               {user.roleId === 1 ? <RegistrasiEmployee /> : <HistoryWork />}
               {user.roleId === 1 ? "" : <ButtonReports />}
