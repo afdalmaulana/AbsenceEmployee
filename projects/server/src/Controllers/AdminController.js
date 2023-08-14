@@ -50,18 +50,21 @@ const AdminController = {
                 const findUser = await user.findByPk(req.user.id)
                 console.log("user", req.user.id)
                 if(!findUser) return res.status(500).json({message : "User not found"})
-                const salt = await bcrypt.genSalt(10)
-                const hashPassword = await bcrypt.hash(password,salt)
-                findUser.password = hashPassword;
-                findUser.fullName = fullName;
-                findUser.username = username;
-                findUser.birthday = birthday;
-                await findUser.save(), {transaction : t};
-                return res.status(200).json({message : "Success"})
+                if(findUser.fullName) return res.status(500).json({message : "Link Expired, Data Already Fill"})
+                db.sequelize.transaction(async (t) => {
+                    const salt = await bcrypt.genSalt(10)
+                    const hashPassword = await bcrypt.hash(password,salt)
+                    findUser.password = hashPassword;
+                    findUser.fullName = fullName;
+                    findUser.username = username;
+                    findUser.birthday = birthday;
+                    await findUser.save(), {transaction : t};
+                    return res.status(200).json({message : "Success"})
+                })
             })
         } catch (error) {
             return res.status(500).json({message : error.message})
         }
-    }
+    },
 }
 module.exports = AdminController;

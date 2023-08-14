@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     isLogin : {
       type : DataTypes.BOOLEAN,
       defaultValue : false
-    }
+    },
   }, {
     sequelize,
     modelName: 'User',

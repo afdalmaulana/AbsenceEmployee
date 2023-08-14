@@ -1,5 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { TbReportMoney } from "react-icons/tb";
 
 export default function ButtonReports() {
   const navigate = useNavigate();
@@ -8,8 +9,12 @@ export default function ButtonReports() {
   }
   return (
     <>
-      <Button variant={"unstyled"} onClick={() => toReport()}>
-        Report
+      <Button
+        rightIcon={<TbReportMoney />}
+        variant={"unstyled"}
+        onClick={() => toReport()}
+      >
+        Payroll Report
       </Button>
     </>
   );

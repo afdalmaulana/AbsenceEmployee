@@ -57,15 +57,28 @@ export default function RegistrasiEmployee({ isOpen, onClose }) {
     },
   });
 
+  const calculateDaySalary = (baseSalary) => {
+    if (baseSalary) {
+      const numericBaseSalary = parseFloat(baseSalary.replace(/\$|,/g, ""));
+      const calculatedDaySalary = (numericBaseSalary / 20).toFixed(0); // Menggunakan toFixed(0) untuk menghasilkan angka tanpa desimal
+      return calculatedDaySalary;
+    }
+    return "";
+  };
+
+  // Fungsi untuk mengupdate daySalary saat baseSalary berubah
+  const handleBaseSalaryChange = (e) => {
+    const { value } = e.target;
+    formik.handleChange(e); // Panggil handleChange formik untuk update input baseSalary
+    const calculatedDaySalary = calculateDaySalary(value);
+    formik.setFieldValue("daySalary", calculatedDaySalary);
+  };
   useEffect(() => {
     dispatch(getRole());
   }, []);
   const { role } = useSelector((state) => state.AuthReducer);
   return (
     <>
-      {/* <Button onClick={onOpen} mt={"10px"} mr={"10px"}>
-        Add Employee
-      </Button> */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent fontFamily={"montserrat"}>
@@ -126,7 +139,7 @@ export default function RegistrasiEmployee({ isOpen, onClose }) {
                     id="baseSalary"
                     name="baseSalary"
                     value={formik.values.baseSalary}
-                    onChange={formik.handleChange}
+                    onChange={handleBaseSalaryChange}
                   ></Input>
                   {formik.touched.baseSalary && formik.errors.baseSalary && (
                     <FormErrorMessage>

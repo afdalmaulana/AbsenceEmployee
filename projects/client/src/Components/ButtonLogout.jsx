@@ -9,8 +9,6 @@ export default function ButtonLogout() {
     <>
       <Button
         mt={"10px"}
-        // variant={"unstyled"}
-        // h={"20px"}
         bgColor={"#7C9D96"}
         onClick={() => dispatch(userLogout())}
         mr={"20px"}

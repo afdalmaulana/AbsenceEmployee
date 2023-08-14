@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { BsPersonCircle } from "react-icons/bs";
 import { BiSolidLockAlt } from "react-icons/bi";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible, AiFillEye, AiOutlineLogin } from "react-icons/ai";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useState } from "react";
@@ -69,8 +69,8 @@ export default function Login() {
             w={{ md: "300px", lg: "400px" }}
             h={"400px"}
             textAlign={"center"}
-            bgColor={"blackAlpha.900"}
-            color={"white"}
+            bgColor={"#7C9D96"}
+            color={"black"}
           >
             <Text fontSize={"32px"} mt={"40px"} align={"center"}>
               Sign in
@@ -88,6 +88,7 @@ export default function Login() {
                     <Input
                       placeholder="Email"
                       isRequired={true}
+                      borderColor={"black"}
                       id="email"
                       name="email"
                       value={formik.values.email}
@@ -109,6 +110,7 @@ export default function Login() {
                       placeholder="Password"
                       id="password"
                       name="password"
+                      borderColor={"black"}
                       type={show ? "text" : "password"}
                       value={formik.values.password}
                       onChange={formik.handleChange}
@@ -150,10 +152,12 @@ export default function Login() {
 
                 <Button
                   type="submit"
-                  colorScheme="teal"
+                  bgColor="black"
+                  color={"white"}
                   _hover={{ bgColor: "green" }}
                   mt={"30px"}
                   w={{ sm: "100px", md: "200px", lg: "300px" }}
+                  rightIcon={<AiOutlineLogin />}
                 >
                   {isLoading ? <Spinner /> : "LOGIN"}
                 </Button>

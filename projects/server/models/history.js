@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'History',
-    createdAt : "clockIn",
+    // createdAt : "clockIn",
 
   });
   return History;
