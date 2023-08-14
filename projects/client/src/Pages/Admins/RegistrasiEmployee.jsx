@@ -17,6 +17,7 @@ import {
   ModalOverlay,
   Select,
   Spinner,
+  Stack,
   Text,
   useDisclosure,
   useToast,
@@ -35,8 +36,8 @@ export default function RegistrasiEmployee({ isOpen, onClose }) {
       .required("Email address is required")
       .email("Invalid email address format"),
     roleId: Yup.string().required("Role is required"),
-    baseSalary: Yup.string().required("is Required"),
-    daySalary: Yup.string().required("is Required"),
+    baseSalary: Yup.string().required("Base Salary Required"),
+    daySalary: Yup.string().required("Day Salary Required"),
   });
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -105,16 +106,18 @@ export default function RegistrasiEmployee({ isOpen, onClose }) {
                     onChange={formik.handleChange}
                   ></Input>
                 </InputGroup>
-                {formik.touched.email && formik.errors.email && (
-                  <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-                )}
+                <Center>
+                  {formik.touched.email && formik.errors.email && (
+                    <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+                  )}
+                </Center>
               </FormControl>
               <Select
                 {...formik.getFieldProps("roleId")}
                 mt={"12px"}
                 ml={"30px"}
                 w={"350px"}
-                placeholder="Pilih Role"
+                placeholder="Select Role"
               >
                 {role.map((item) => (
                   <option key={item.id} value={item.id}>
@@ -130,47 +133,53 @@ export default function RegistrasiEmployee({ isOpen, onClose }) {
                 <Text ml={"30px"} mt={"16px"}>
                   Salary
                 </Text>
-                <InputGroup mt={"12px"} ml={"30px"} w={"350px"}>
+                <InputGroup mt={"12px"} ml={"30px"}>
                   <InputLeftElement>
                     <CiMoneyCheck1 />
                   </InputLeftElement>
                   <Input
                     placeholder="Amount"
                     id="baseSalary"
+                    w={"350px"}
                     name="baseSalary"
                     value={formik.values.baseSalary}
                     onChange={handleBaseSalaryChange}
                   ></Input>
+                </InputGroup>
+                <Center>
                   {formik.touched.baseSalary && formik.errors.baseSalary && (
                     <FormErrorMessage>
                       {formik.errors.baseSalary}
                     </FormErrorMessage>
                   )}
-                </InputGroup>
+                </Center>
               </FormControl>
               <FormControl
                 isInvalid={formik.touched.daySalary && formik.errors.daySalary}
               >
-                <Text ml={"30px"} mt={"16px"}>
+                <Text fontSize={"16px"} ml={"30px"} mt={"16px"}>
                   Day Salary
                 </Text>
-                <InputGroup mt={"12px"} ml={"30px"} w={"350px"}>
+                <InputGroup ml={"30px"} mt={"12px"}>
                   <InputLeftElement>
                     <CiMoneyCheck1 />
                   </InputLeftElement>
                   <Input
-                    placeholder="Day Amount"
+                    placeholder="Type here"
                     id="daySalary"
                     name="daySalary"
+                    w={"350px"}
                     value={formik.values.daySalary}
                     onChange={formik.handleChange}
                   ></Input>
+                </InputGroup>
+                <Center>
                   {formik.touched.daySalary && formik.errors.daySalary && (
                     <FormErrorMessage>
                       {formik.errors.daySalary}
                     </FormErrorMessage>
                   )}
-                </InputGroup>
+                </Center>
               </FormControl>
             </ModalBody>
             <ModalFooter>

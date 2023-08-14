@@ -53,8 +53,12 @@ const salaryController = {
     getSalary : async(req,res) => {
         try {
             const {id} = req.user
+            const {month, year} = req.query
+            const whereCondition = { userId : id };
+            if (month) whereCondition.Month = month;
+            if (year) whereCondition.Year = year;
             const respon = await sl.findAll({
-                where : {userId : id}
+                where : whereCondition
             })
             return res.status(200).json({message : "Salary", respon})
         } catch (error) {

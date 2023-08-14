@@ -58,15 +58,20 @@ export default function Login() {
   return (
     <>
       <Box fontFamily={"montserrat"}>
-        <Flex>
-          <Box w={{ md: "80vh", lg: "100vh" }}>
-            <Image src="compa.jpg"></Image>
+        <Flex className="login">
+          <Box w={"100vh"}>
+            <Image src="compa.jpg" ml={{ md: "60px" }}></Image>
           </Box>
           <Box
             boxShadow={"lg"}
-            m={"200px auto"}
+            m={{
+              base: "50px auto",
+              sm: "50px auto",
+              md: "80px auto",
+              lg: "200px auto",
+            }}
             borderRadius={"20px"}
-            w={{ md: "300px", lg: "400px" }}
+            w={"400px"}
             h={"400px"}
             textAlign={"center"}
             bgColor={"#7C9D96"}
@@ -77,7 +82,7 @@ export default function Login() {
             </Text>
             <Text>Welcome Back</Text>
             <form onSubmit={formik.handleSubmit}>
-              <Box w={{ sm: "100px", md: "200px", lg: "300px" }} m={"auto"}>
+              <Box w={"300px"} m={"auto"}>
                 <FormControl
                   isInvalid={formik.touched.email && formik.errors.email}
                 >

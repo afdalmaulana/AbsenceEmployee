@@ -1,6 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../redux/reducer/AuthReducer";
+import { HiOutlineLogout } from "react-icons/hi";
 
 export default function ButtonLogout() {
   const { user } = useSelector((state) => state.AuthReducer);
@@ -13,7 +14,7 @@ export default function ButtonLogout() {
         onClick={() => dispatch(userLogout())}
         mr={"20px"}
         _hover={{ color: "red" }}
-        // fontSize={"24px"}
+        rightIcon={<HiOutlineLogout />}
       >
         Sign out
       </Button>

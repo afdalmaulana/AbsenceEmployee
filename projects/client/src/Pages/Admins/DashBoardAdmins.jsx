@@ -75,12 +75,14 @@ export default function DashBoardAdmins() {
                     <Tr key={item.id}>
                       <Td>{item.fullName}</Td>
                       <Td>{item.email}</Td>
-                      <Td>{new Date(item.birthday).toLocaleDateString()}</Td>
+                      <Td>
+                        {item.birthday
+                          ? new Date(item.birthday).toLocaleDateString()
+                          : ""}
+                      </Td>
                       <Td>{getRoleName(item.roleId)}</Td>
                       <Td>{item.daySalary}</Td>
                       <Td>{item.daySalary}</Td>
-                      {/* <Td>{item.month}</Td>
-                      <Td>{item.year}</Td> */}
                     </Tr>
                   );
                 })}

@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@500&family=Montserrat:wght@500&display=swap');
 
-/* @media screen {
-  
-} */
+@media only screen and (min-width : 768px) and (max-width : 1023px){
+  .login{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+@media only screen and (max-width : 768px){
+  .login{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
 .App {
   text-align: center;
 }
