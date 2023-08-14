@@ -55,39 +55,44 @@ export default function DashBoardAdmins() {
       <Navbar />
       <Flex>
         <SideBar />
-        <Box fontFamily={"montserrat"} ml={{ md: "180px", lg: "250px" }}>
+        <Box
+          fontFamily={"montserrat"}
+          ml={{ sm: "160px", md: "180px", lg: "250px" }}
+        >
           <Stack>
             <Text fontSize={"32px"}>List Employee</Text>
-            <Table variant={"striped"} colorScheme="cyan">
-              <Thead>
-                <Tr>
-                  <Th>Full Name</Th>
-                  <Th>Email</Th>
-                  <Th>Birthday</Th>
-                  <Th>Role</Th>
-                  <Th>Base Salary</Th>
-                  <Th>Day Salary</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {filteredUsers.map((item) => {
-                  return (
-                    <Tr key={item.id}>
-                      <Td>{item.fullName}</Td>
-                      <Td>{item.email}</Td>
-                      <Td>
-                        {item.birthday
-                          ? new Date(item.birthday).toLocaleDateString()
-                          : ""}
-                      </Td>
-                      <Td>{getRoleName(item.roleId)}</Td>
-                      <Td>{item.daySalary}</Td>
-                      <Td>{item.daySalary}</Td>
-                    </Tr>
-                  );
-                })}
-              </Tbody>
-            </Table>
+            <Box>
+              <Table variant={"striped"} colorScheme="cyan">
+                <Thead>
+                  <Tr>
+                    <Th>Full Name</Th>
+                    <Th>Email</Th>
+                    <Th>Birthday</Th>
+                    <Th>Role</Th>
+                    <Th>Base Salary</Th>
+                    <Th>Day Salary</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {filteredUsers.map((item) => {
+                    return (
+                      <Tr key={item.id}>
+                        <Td>{item.fullName}</Td>
+                        <Td>{item.email}</Td>
+                        <Td>
+                          {item.birthday
+                            ? new Date(item.birthday).toLocaleDateString()
+                            : ""}
+                        </Td>
+                        <Td>{getRoleName(item.roleId)}</Td>
+                        <Td>{item.daySalary}</Td>
+                        <Td>{item.daySalary}</Td>
+                      </Tr>
+                    );
+                  })}
+                </Tbody>
+              </Table>
+            </Box>
           </Stack>
         </Box>
       </Flex>
