@@ -66,6 +66,7 @@ export default function DashBoardAdmins() {
                 <Thead>
                   <Tr>
                     <Th>Full Name</Th>
+                    <Th>username</Th>
                     <Th>Email</Th>
                     <Th>Birthday</Th>
                     <Th>Role</Th>
@@ -78,6 +79,7 @@ export default function DashBoardAdmins() {
                     return (
                       <Tr key={item.id}>
                         <Td>{item.fullName}</Td>
+                        <Td>{item.username}</Td>
                         <Td>{item.email}</Td>
                         <Td>
                           {item.birthday
@@ -85,7 +87,7 @@ export default function DashBoardAdmins() {
                             : ""}
                         </Td>
                         <Td>{getRoleName(item.roleId)}</Td>
-                        <Td>{item.daySalary}</Td>
+                        <Td>{item.baseSalary}</Td>
                         <Td>{item.daySalary}</Td>
                       </Tr>
                     );
